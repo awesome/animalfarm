@@ -1,7 +1,16 @@
 import { useEffect, useState } from 'react';
 
 function App() {
-    const { search, animals } = useAnimalSearch();
+    //const { search, animals } = useAnimalSearch();
+    const [animals, setAnimals] = useState([]);
+
+    const search = async (q) => {
+        const response = await fetch(
+            'http://localhost:8080?' + new URLSearchParams({ q })
+        );
+        const data = await response.json();
+        setAnimals(data);
+    };
 
     return (
         <main>
@@ -15,7 +24,10 @@ function App() {
 
             <ul>
                 {animals.map((animal) => (
-                    <Animal key={animal.id} {...animal} />
+                    <li key={animal.id}>
+                        <strong>{animal.type}</strong> {animal.name}
+                    </li>
+                    //<Animal key={animal.id} {...animal} />
                 ))}
 
                 {animals.length === 0 && 'No animals found'}
@@ -34,6 +46,7 @@ function Animal({ type, name, age }) {
     );
 }
 
+/*
 // Custom Hook
 function useAnimalSearch() {
     const [animals, setAnimals] = useState([]);
@@ -50,10 +63,11 @@ function useAnimalSearch() {
         const data = await response.json();
         setAnimals(data);
 
-        localStorage.setItem('lastQuery', q);
+        //localStorage.setItem('lastQuery', q);
     };
 
     return { search, animals };
 }
+*/
 
 export default App;
