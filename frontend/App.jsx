@@ -15,10 +15,7 @@ function App() {
 
             <ul>
                 {animals.map((animal) => (
-                    <li key={animal.id}>
-                        <strong>{animal.type}</strong> {animal.name}
-                    </li>
-                    //<Animal key={animal.id} {...animal} />
+                    <Animal key={animal.id} {...animal} />
                 ))}
 
                 {animals.length === 0 && 'No animals found'}
