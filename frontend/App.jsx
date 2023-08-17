@@ -1,23 +1,7 @@
 import { useEffect, useState } from 'react';
 
 function App() {
-    //const { search, animals } = useAnimalSearch();
-    const [animals, setAnimals] = useState([]);
-
-    useEffect(() => {
-        const lastQuery = localStorage.getItem('lastQuery');
-        search(lastQuery);
-    }, []);
-
-    const search = async (q) => {
-        const response = await fetch(
-            'http://localhost:8080?' + new URLSearchParams({ q })
-        );
-        const data = await response.json();
-        setAnimals(data);
-
-        localStorage.setItem('lastQuery', q);
-    };
+    const { search, animals } = useAnimalSearch();
 
     return (
         <main>
@@ -53,15 +37,14 @@ function Animal({ type, name, age }) {
     );
 }
 
-/*
 // Custom Hook
 function useAnimalSearch() {
     const [animals, setAnimals] = useState([]);
 
-    // useEffect(() => {
-    //    const lastQuery = localStorage.getItem('lastQuery');
-    //    search(lastQuery);
-    // }, []);
+    useEffect(() => {
+        const lastQuery = localStorage.getItem('lastQuery');
+        search(lastQuery);
+     }, []);
 
     const search = async (q) => {
         const response = await fetch(
@@ -70,11 +53,10 @@ function useAnimalSearch() {
         const data = await response.json();
         setAnimals(data);
 
-        //localStorage.setItem('lastQuery', q);
+        localStorage.setItem('lastQuery', q);
     };
 
     return { search, animals };
 }
-*/
 
 export default App;
