@@ -10,8 +10,7 @@ function App() {
             <input
                 type="text"
                 placeholder="Search"
-                onChange={(e) => console.log(e.target.value)}
-                //onChange={(e) => search(e.target.value)}
+                onChange={(e) => search(e.target.value)}
             />
 
             <ul>
@@ -39,10 +38,10 @@ function Animal({ type, name, age }) {
 function useAnimalSearch() {
     const [animals, setAnimals] = useState([]);
 
-    useEffect(() => {
-        const lastQuery = localStorage.getItem('lastQuery');
-        search(lastQuery);
-    }, []);
+    // useEffect(() => {
+    //    const lastQuery = localStorage.getItem('lastQuery');
+    //    search(lastQuery);
+    // }, []);
 
     const search = async (q) => {
         const response = await fetch(
