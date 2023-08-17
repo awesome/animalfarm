@@ -10,7 +10,8 @@ function App() {
             <input
                 type="text"
                 placeholder="Search"
-                onChange={(e) => search(e.target.value)}
+                onChange={(e) => console.log(e.target.value)}
+                //onChange={(e) => search(e.target.value)}
             />
 
             <ul>
